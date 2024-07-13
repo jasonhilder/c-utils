@@ -16,3 +16,10 @@ Common functions to create and manipulate strings
 @todo
 ```
 
+## Vector
+
+Dynamic array like structure with add, remove, includes etc
+
+```
+@todo
+```
