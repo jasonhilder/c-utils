@@ -25,6 +25,7 @@ vector_t* vector_new(size_t items_size, size_t initial_capacity) {
     return vec;
 }
 
+// Add a single element to an array, reallocates if vec is at capacity.
 void vector_add(vector_t* vec, void* element) {
     if(vec->size == vec->capacity) {
 
@@ -41,6 +42,19 @@ void vector_add(vector_t* vec, void* element) {
     // element to add and then the amount to copy.
     memcpy((char *)vec->data + (vec->size * vec->i_size), element, vec->i_size );
     vec->size++;
+}
+
+// Add or "Join" array to the vector
+void vector_join(vector_t* vec, void* new_arr, size_t new_arr_len) {
+    // Check if there is enough space to just place the new arr in vec space
+    size_t free_space = (vec->capacity - vec->size);
+    if(new_arr_len > free_space) {
+        vec->capacity = (vec->capacity + new_arr_len);
+        vec->data = realloc(vec->data, (vec->capacity * vec->i_size));
+    }
+    
+    memcpy((char *)vec->data + (vec->size * vec->i_size), new_arr, (new_arr_len * vec->i_size));
+    vec->size = vec->size + new_arr_len;
 }
 
 void* vector_get(vector_t* vec, size_t index) {

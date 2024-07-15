@@ -16,6 +16,7 @@ typedef struct Vector {
 
 vector_t* vector_new(size_t items_size, size_t initial_capacity);
 void vector_add(vector_t* vec, void* element);
+void vector_join(vector_t* vec, void* new_arr, size_t new_arr_len);
 void* vector_get(vector_t* vec, size_t index);
 void vector_free(vector_t* vec);
 
