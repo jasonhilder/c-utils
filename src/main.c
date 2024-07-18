@@ -1,10 +1,16 @@
 #include "vector.h"
+#include "string_h.h"
 #include <stdio.h>
+#include <string.h>
 
 int main() {
     #ifdef _DEBUG
     printf("Debug mode enabled.\n");
     #endif
+
+    // ===============================================
+    // Vector examples
+    // ===============================================
 
     vector_t* int_vector = vector_new(sizeof(int), 2);
 
@@ -43,5 +49,43 @@ int main() {
     printf("capacity: %ld\n", int_vector->capacity);
 
     vector_free(int_vector);
+
+    // ===============================================
+    // String examples
+    // ===============================================
+
+    string_t *sh = string_new("Hello");
+
+    print_string(sh);
+    printf("String len: %d\n", (int)strlen(sh->value));
+    printf("Allocation len: %d\n", sh->allocated_size);
+    // ===============================================
+
+    string_add(sh, " World!", false);
+    print_string(sh);
+    printf("String len: %d\n", (int)strlen(sh->value));
+    printf("Allocation len: %d\n", sh->allocated_size);
+    // ===============================================
+
+    string_add(sh, "the begining, ", true);
+    print_string(sh);
+    printf("String len: %d\n", (int)strlen(sh->value));
+    printf("Allocation len: %d\n", sh->allocated_size);
+    // ===============================================
+
+    string_replace(sh, "World", "World, World, World");
+    print_string(sh);
+    printf("String len: %d\n", (int)strlen(sh->value));
+    printf("Allocation len: %d\n", sh->allocated_size);
+    // ===============================================
+
+    string_replace_all(sh, "World", "Cats");
+    print_string(sh);
+    printf("String len: %d\n", (int)strlen(sh->value));
+    printf("Allocation len: %d\n", sh->allocated_size);
+    // ===============================================
+
+    string_free(sh);
+
     return 0;
 }
