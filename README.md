@@ -23,3 +23,11 @@ Dynamic array like structure with add, remove, includes etc
 ```
 @todo
 ```
+
+## List
+
+Dynamic array like structure different to the vector lib as it is implemented as a linked list with add, remove etc
+
+```
+@todo
+```
